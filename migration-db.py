@@ -1,7 +1,12 @@
 import sqlite3
 
+print("\nWelcome to the database migration tool ! (^_^) \n")
+
+# Choose the database name
+db_name = input("Enter the name of the database: ")
+
 # Connect to the database
-conn = sqlite3.connect('newdb.db')
+conn = sqlite3.connect(db_name)
 cursor = conn.cursor()
 
 # Open and read the file as a single buffer
@@ -16,7 +21,7 @@ conn.close()
 
 # Connect to the old and new databases
 old_conn = sqlite3.connect('tpb2.db')
-new_conn = sqlite3.connect('newdb.db')
+new_conn = sqlite3.connect(db_name)
 
 # Create a cursor for each connection
 old_cursor = old_conn.cursor()
@@ -44,7 +49,7 @@ for row in old_cursor.fetchall():
     IdGame = row[6]
 
     # Insert the 'placeName', 'address', and 'city' values into the new 'place' table
-    new_cursor.execute('INSERT INTO place (Name, Address, City) VALUES (?, ?, ?)', (placeName, address, city))
+    new_cursor.execute('INSERT OR IGNORE INTO place (Name, Address, City) VALUES (?, ?, ?)', (placeName, address, city))
 
     # Get the new 'IdPlace' value
     new_cursor.execute('SELECT IdPlace FROM place WHERE Name=? AND Address=? AND City=?', (placeName, address, city))
@@ -74,7 +79,7 @@ for row in old_cursor.fetchall():
 
     idEmployeeData = new_cursor.lastrowid
     # Insert the values into the new 'coach' table
-    new_cursor.execute('INSERT INTO coach (idCoach, IdGame, LicenseDate, idEmployeeData) VALUES (?, ?, ?, ?)', (idCoach, idGame, LicenseDate, idEmployeeData))
+    new_cursor.execute('INSERT INTO coach ( IdGame, LicenseDate, idEmployeeData) VALUES ( ?, ?, ?)', ( idGame, LicenseDate, idEmployeeData))
 
 # Select all the rows from the old 'player' table
 old_cursor.execute('SELECT * FROM player')
@@ -98,7 +103,7 @@ for row in old_cursor.fetchall():
 
     idEmployeeData = new_cursor.lastrowid
     # Insert the values into the new 'coach' table
-    new_cursor.execute('INSERT INTO player (idPlayer, IdGame, Ranking, idEmployeeData) VALUES (?, ?, ?, ?)', (idPlayer, idGame, Ranking, idEmployeeData))
+    new_cursor.execute('INSERT INTO player (IdGame, Ranking, idEmployeeData) VALUES (?, ?, ?)', ( idGame, Ranking, idEmployeeData))
 
 old_cursor.execute('SELECT * FROM staff')
 
@@ -119,6 +124,7 @@ for row in old_cursor.fetchall():
 
     # Add the idEmployeeData from the employeeData table to the staff table on the IdEmployeeData column
     idEmployeeData = new_cursor.lastrowid
+
     # Insert the values into the new 'coach' table
     new_cursor.execute('INSERT INTO staff (idStaff, idEmployeeData) VALUES (?, ?)', (idStaff, idEmployeeData))
 
@@ -129,3 +135,5 @@ new_conn.commit()
 # Close the connections
 old_conn.close()
 new_conn.close()
+
+print("\nMigration complete !")

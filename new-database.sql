@@ -4,7 +4,9 @@
         primary key autoincrement,
     Name text(30),
     Address text(30),
-    City text(30)
+    City text(30),
+    UNIQUE (Name, Address, City)
+
 );
 
 create table tournament
