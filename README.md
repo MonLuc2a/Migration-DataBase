@@ -14,6 +14,8 @@ De plus, pour s'assurer que l'équipe peut accéder aux données, ils veulent af
 - Lister tous les tournois par lieu 
 - Obtenir le nombre de joueurs par sexe.
 
+![alt text](Data/img.png)
+
 <br/>
 <br/>
 
@@ -27,9 +29,9 @@ Voici comment nous pouvons aborder ce projet en 6 étapes :
 <br/><br/>
 - Écrivez un script SQL qui crée le nouveau schéma de base de données en utilisant les commandes CREATE TABLE et CREATE INDEX. Assurez-vous de définir les contraintes de clé étrangère appropriées pour garantir l'intégrité des données.
 <br/><br/>
-- Écrivez un second script SQL qui transfère les données de l'ancienne base de données vers la nouvelle en utilisant les commandes INSERT INTO et SELECT. Vous devrez peut-être utiliser des jointures pour combiner les données de plusieurs tables de l'ancienne base de données dans une seule table de la nouvelle base de données.
+- Écrivez un second script en python qui transfère les données de l'ancienne base de données vers la nouvelle en utilisant les commandes INSERT INTO et SELECT. Vous devrez peut-être utiliser des jointures pour combiner les données de plusieurs tables de l'ancienne base de données dans une seule table de la nouvelle base de données.
 <br/><br/>
-- Écrivez les requêtes SQL demandées pour lister tous les tournois pour un nom de jeu donné, pour récupérer le salaire moyen des joueurs pour un nom de jeu donné, pour lister tous les tournois par lieu et pour obtenir le nombre de joueurs par sexe. Utilisez les commandes SELECT, FROM, WHERE, GROUP BY et HAVING pour construire ces requêtes.
+- Écrivez les requêtes SQL demandées pour lister tous les tournois pour un nom de jeu donné, pour récupérer le salaire moyen des joueurs pour un nom de jeu donné, pour lister tous les tournois par lieu et pour obtenir le nombre de joueurs par sexe. Utilisez les commandes SELECT, FROM, WHERE, GROUP BY, ORDER BY et JOIN pour construire ces requêtes.
 <br/><br/>
 - Testez vos scripts et requêtes en utilisant un logiciel de gestion de bases de données pour exécuter votre code et vérifier que les résultats sont corrects.
 <br/><br/>
@@ -40,3 +42,30 @@ Pour exécuter le script, il faut se placer dans le dossier 'projet-SQL' et util
 <br/>
 <br/>
 Le programme vous demande seulement de rentrer le nom que vous voulez donner à la nouvelle base de données.
+<br/>
+<br/>
+
+## Exercice
+<br/>
+<br/>
+Lister tous les tournois pour un nom de jeu donné 
+
+![alt text](exercice_capture/img.png)
+<br/>
+<br/>
+
+Pour un nom de jeu, récupérer le salaire moyen des joueurs 
+
+![alt text](exercice_capture/img_1.png)
+<br/>
+<br/>
+
+Lister tous les tournois par lieu
+
+![alt text](exercice_capture/img_2.png)
+<br/>
+<br/>
+
+Obtenir le nombre de joueurs par sexe
+
+![alt text](exercice_capture/img_3.png)
